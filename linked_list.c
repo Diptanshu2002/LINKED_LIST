@@ -7,6 +7,64 @@ struct node{
     struct node *next;
 };
 
+//COUNTING NUMBER OF NODES
+int countingNodes(struct node **head){
+    struct node *temp = *head;
+    int count = 0;
+    while(temp){
+        count++;
+        temp=temp->next;
+    }
+    return count;
+}
+
+//INSERTING NEW NODE AT A GIVEN POSITION
+void insertNode(struct node **head , int pos , int value){
+    struct node *temp = *head;
+    struct node *newNode = (struct node *)malloc(sizeof(struct node));
+    pos--;
+
+        //lenght of the linked list
+    int len = countingNodes(&(*head));
+        //wrong input
+    if(pos < 0){
+        printf("/nEnter value more than 0");
+        return;
+    }
+        //when position exceeds length
+    if(pos>len){
+        while (temp)
+        {   
+            if(temp->next == NULL){
+                newNode->data = value;
+                newNode->next = NULL;
+                temp->next = newNode;
+                return;
+            }
+            else{
+                temp = temp->next;}
+        } 
+    }
+        //inserting @ first position
+    if(pos == 0){
+        newNode->data = value;
+        newNode->next = *head;
+        *head = newNode;
+        return;
+    }
+        //insertion @ given position
+    for(int i = 1 ; i<=pos;i++){
+        if(i == pos){
+            newNode->data = value;
+            newNode->next = temp->next;
+            temp->next = newNode;
+            return;
+        }
+        temp = temp->next;
+    }
+
+}
+
 //INITIALING NODE OF ' n ' SIZE
 void createNode(struct node **head, int length){
     int data;
@@ -43,6 +101,7 @@ int main(){
     printf("Enter the Number of Nodes : ");
     scanf("%d",&n);
     createNode(&head,n);
+    insertNode(&head , 10 , 3);
     display(&head);
     return 0;
 }
