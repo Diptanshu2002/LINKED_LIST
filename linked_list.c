@@ -6,6 +6,30 @@ struct node{
     int data;
     struct node *next;
 };
+//DELETING NODES FROM A GIVEN LOCATION
+void deleteNode(struct node **head , int pos){
+    struct node *temp = NULL;
+    struct node *freeNode = *head;
+    pos--; //making pos to 0 if pos was 1
+
+    //when to delete first node.
+    if(pos == 0){
+        temp = freeNode;
+        temp = temp->next;
+        *head = temp;
+        free(freeNode);
+        return;
+    }
+
+    for(int i=1 ; i<=pos ;i++ ){
+        temp = freeNode;
+        freeNode = freeNode->next;
+    }
+    temp->next = freeNode->next;
+    free(freeNode);
+
+}
+
 
 //COUNTING NUMBER OF NODES
 int countingNodes(struct node **head){
@@ -101,7 +125,8 @@ int main(){
     printf("Enter the Number of Nodes : ");
     scanf("%d",&n);
     createNode(&head,n);
-    insertNode(&head , 10 , 3);
+    // insertNode(&head , 10 , 3);
+    deleteNode(&head,1);
     display(&head);
     return 0;
 }
