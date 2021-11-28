@@ -1,11 +1,47 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<limits.h>
 
 //DEFINING NODE
 struct node{
     int data;
     struct node *next;
 };
+
+
+void minNode(struct node **head){
+    struct node *temp = *head;
+    int min = INT_MAX;
+    int posMinElement = 0 , counter = 0;
+    while (temp)
+    {
+        counter++;
+        if(min > temp->data){
+            min = temp->data;
+            posMinElement = counter;
+        }
+        temp = temp->next;
+    }
+    printf("\n%d is the min element in the Linked List present at %d",min,posMinElement);
+}
+
+//FINDING MAX ELEMENT and IT's POSITION
+void maxNode(struct node **head){
+    struct node *temp = *head;
+    int max = INT_MIN;
+    int posMaxElement = 0 , counter = 0;
+    while (temp)
+    {
+        counter++;
+        if(max < temp->data){
+            max = temp->data;
+            posMaxElement = counter;
+        }
+        temp = temp->next;
+    }
+    printf("\n%d is the max element in the Linked List present at %d",max,posMaxElement);
+}
+
 //DELETING NODES FROM A GIVEN LOCATION
 void deleteNode(struct node **head , int pos){
     struct node *temp = NULL;
@@ -126,7 +162,9 @@ int main(){
     scanf("%d",&n);
     createNode(&head,n);
     // insertNode(&head , 10 , 3);
-    deleteNode(&head,1);
-    display(&head);
+    // deleteNode(&head,1);
+    maxNode(&head);
+    minNode(&head);
+    // display(&head);
     return 0;
 }
