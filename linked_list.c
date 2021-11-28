@@ -43,7 +43,6 @@ int main(){
     printf("Enter the Number of Nodes : ");
     scanf("%d",&n);
     createNode(&head,n);
-    deletingDuplicates(&head);
     display(&head);
     return 0;
 }
