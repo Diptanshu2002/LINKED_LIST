@@ -8,6 +8,10 @@ struct node{
     struct node *next;
 };
 
+// CHECKING WHETHER THE LINKED LIST IS SORTED OR NOT
+void isSorted(struct node **head){
+    
+}
 
 void minNode(struct node **head){
     struct node *temp = *head;
